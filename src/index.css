@@ -1,0 +1,40 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+  @apply bg-primary text-primary
+}
+
+@font-face {
+  font-family: 'Univers55Roman';
+  src: url('../public/fonts/Univers55Roman.otf')
+}
+
+
+
+
+
+.dark {
+  --color-bg-primary: #000;
+  --color-bg-secondary: #ccc5b9;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #000;
+  --color-text-accent: #778899;
+  --color-bg-button: #778899;
+  --color-border-primary: #f5f5f5;
+}
+
+.light {
+  --color-bg-primary: #ccc5b9;
+  --color-bg-secondary: #000;
+  --color-text-primary: #000;
+  --color-text-secondary: #f5f5f5 ;
+  --color-text-accent: #36454f; 
+  /* --color-bg-input: #edf2f7; */
+  --color-bg-button: #36454f;
+  --color-border-primary: #000;
+}
