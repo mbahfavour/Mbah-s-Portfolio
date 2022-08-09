@@ -16,7 +16,7 @@ const ProjectsPage = ({ projects }) => {
         <div className='flex flex-wrap'>
           {projects.map((project) => {
             return(
-              <Project key={project.id} {...project}/>
+              <Project key={project.id} image={project.image} {...project}/>
             )
           })}
         </div>
