@@ -28,23 +28,61 @@ const Contacts = () => {
   } = useForm();
 
 
+
   const toastifySuccess = () => {
-    toast("Form sent!", {
-      position: "bottom-right",
+    toast.success("Message sent!", {
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: false,
-      // className: "submit-feedback success",
-      // toastId: "notifyToast",
+      theme: "colored",
     });
   };
+  
+  const toastifyFailure = () => {
+    toast.error("Message could not be sent!. Kindly resend the message", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      theme: "colored",
+    });
+  }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
 
+  const onSubmit = async (data) => {
     const { emailName, emailAddress, message } = data;
+
+    try {
+      setDisabled(true);
+
+      const templateParams = {
+        emailName,
+        emailAddress,
+        message
+      };
+
+      await emailjs.send(
+        'service_stlzqu6',
+        'template_6oqrndo',
+        templateParams,
+        'GK3jg-2BcuM6Qe3fq'
+      );
+
+      toastifySuccess();
+      setEmailName('')
+      setEmailAddress('')
+      setMessage('')
+      setDisabled(false);
+    } catch (error) {
+      toastifyFailure();
+      setDisabled(false)
+      console.log(error);
+    }
   };
 
   return (
@@ -59,7 +97,7 @@ const Contacts = () => {
             <h4 className="text-xl text-center">Send me an email</h4>
           </div>
           <div className="mt-5">
-            <form className="" onSubmit={handleSubmit(onSubmit)}>
+            <form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="my-4">
                 <label className="text-sm">Name: </label>
 
