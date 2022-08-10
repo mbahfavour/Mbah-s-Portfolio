@@ -10,10 +10,10 @@ const Project = ({ id, title, description, image, app_url, github_url }) => {
             <p className='mt-10'>{description}</p>
             <div className='flex justify-evenly mt-10'>
                 <div className='border border-primary p-3 flex items-center hover:text-secondary hover:bg-secondary'>
-                   <a href={github_url} target="_blank" rel="noreferrer">source code.</a> 
+                  <a href={github_url} target="_blank" rel="noreferrer">source code.</a> 
                 </div>
                 <div className='border border-primary p-3 flex items-center hover:text-secondary hover:bg-secondary '>
-                   <a href={app_url} target="_blank" rel="noreferrer">app demo.</a> 
+                  <a href={app_url} target="_blank" rel="noreferrer">app demo.</a> 
                 </div>
             </div>
         </div>
