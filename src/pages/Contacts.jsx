@@ -16,14 +16,12 @@ import emailjs from 'emailjs-com'
 
 
 const Contacts = () => {
-  const [emailName, setEmailName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(false)
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -55,8 +53,8 @@ const Contacts = () => {
 
 
   const onSubmit = async (data) => {
+    
     const { emailName, emailAddress, message } = data;
-
     try {
       setDisabled(true);
 
@@ -65,7 +63,8 @@ const Contacts = () => {
         emailAddress,
         message
       };
-
+      
+      console.log('before await')
       await emailjs.send(
         'service_stlzqu6',
         'template_6oqrndo',
@@ -73,11 +72,11 @@ const Contacts = () => {
         'GK3jg-2BcuM6Qe3fq'
       );
 
+      
+      reset();
       toastifySuccess();
-      setEmailName('')
-      setEmailAddress('')
-      setMessage('')
       setDisabled(false);
+    
     } catch (error) {
       toastifyFailure();
       setDisabled(false)
@@ -100,13 +99,11 @@ const Contacts = () => {
             <form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="my-4">
                 <label className="text-sm">Name: </label>
-
                 <div className="mt-2 mb-2 w-full">
                   <input
                     type="text"
                     name="emailName"
                     className="w-full bg-primary border border-input rounded h-10 p-2"
-                    onChange={(e) => setEmailName(e.target.value)}
                     {...register("emailName", {
                       required: {
                         value: true,
@@ -118,11 +115,12 @@ const Contacts = () => {
                       },
                     })}
                   />
+                  {errors.emailName && (
+                    <span className="text-red-400">{errors.emailName.message}</span>
+                  )}
                 </div>
-                {errors.emailName && (
-                  <span className="text-red-400">{errors.name.message}</span>
-                )}
               </div>
+
               <div className="my-4">
                 <label className="text-sm">Email Address:</label>
                 <div className="mt-2 mb-2 w-full">
@@ -130,28 +128,27 @@ const Contacts = () => {
                     type="email"
                     name="emailAddress"
                     className="w-full bg-primary border border-input rounded h-10 p-2"
-                    onChange={(e) => setEmailAddress(e.target.value)}
                     {...register("emailAddress", {
                       required: true,
                       pattern:
                         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     })}
                   />
+                  {errors.emailAddress && (
+                    <span className="text-red-400">
+                      Please enter a valid email address
+                    </span>
+                  )}
                 </div>
-                {errors.email && (
-                  <span className="text-red-400">
-                    Please enter a valid email address
-                  </span>
-                )}
               </div>
+
               <div className="my-4">
                 <label className="text-sm">Message:</label>
                 <div className="mt-2 mb-2 w-full">
                   <textarea
-                    //rows={3}
+                    rows={3}
                     name="message"
                     className="w-full bg-primary border border-input rounded h-60 p-2"
-                    onChange={(e) => setMessage(e)}
                     {...register("message", {
                       required: true,
                       maxLength: 150,
