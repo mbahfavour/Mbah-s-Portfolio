@@ -90,10 +90,10 @@ const Contacts = () => {
         <h1 className="text-3xl">contact.</h1>
       </div>
       <Divider />
-      <div className="mb-auto md:flex px-20 mt-10">
-        <div className="border p-8 ">
+      <div className="mb-auto md:flex px-20 md:px-40 mt-10">
+        <div className="border p-8 md:w-[400px]">
           <div>
-            <h4 className="text-xl text-center">Send me an email</h4>
+            <h4 className="text-xl text-center">Send me an email .</h4>
           </div>
           <div className="mt-5">
             <form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -116,7 +116,9 @@ const Contacts = () => {
                     })}
                   />
                   {errors.emailName && (
-                    <span className="text-red-400">{errors.emailName.message}</span>
+                    <span className="text-red-400">
+                      {errors.emailName.message}
+                    </span>
                   )}
                 </div>
               </div>
@@ -159,20 +161,26 @@ const Contacts = () => {
                   <span className="text-red-400">Please enter a message</span>
                 )}
               </div>
-              <button
-                type="submit"
-                disabled={disabled}
-                className="border border-primary p-3 hover:text-secondary hover:bg-secondary text-primary bg-primary w-[80px] rounded h-12 mt-3 ml-[90px]"
-              >
-                Send
-              </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={disabled}
+                  className="border  p-3 hover:text-secondary hover:bg-secondary transition ease-out duration-500 text-primary bg-primary w-[80px] rounded h-12 mt-3"
+                >
+                  Send
+                </button>
+              </div>
             </form>
           </div>
         </div>
+
         <ToastContainer />
-        <div className="mt-20">
+
+        <div className="mt-20 md:mt-60">
           <div>
-            <h4 className="text-md ml-10">connect with me on social media.</h4>
+            <h4 className="text-md md:text-2xl ml-10 md:ml-20 ">
+              Connect with me on social media on:{" "}
+            </h4>
           </div>
           <div className="flex mt-5 items-center justify-center">
             <div className="ml-5">
@@ -181,7 +189,7 @@ const Contacts = () => {
                 target="_blank"
                 rel="nonreferrer"
               >
-                <AiOutlineLinkedin size={24} />
+                <AiOutlineLinkedin size={40} />
               </a>
             </div>
             <div className="ml-5">
@@ -190,12 +198,12 @@ const Contacts = () => {
                 target="_blank"
                 rel="nonreferrer"
               >
-                <AiOutlineGithub size={24} />
+                <AiOutlineGithub size={40} />
               </a>
             </div>
             <div className="ml-5">
               <a href="" target="_blank" rel="noreferrer">
-                <AiOutlineTwitter size={24} />
+                <AiOutlineTwitter size={40} />
               </a>
             </div>
           </div>

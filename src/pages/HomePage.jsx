@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className='border md:mx-10'>
       <div className='flex h-40  text-5xl md:text-7xl font-univers'>
-        <h1 className=' font-normal px-20 pt-20 md:p-20 animate-pulse'>software engineer,</h1>
+        <h1 className=' font-normal px-20 pt-20 md:p-20'>software engineer,</h1>
         <div className='border h-60 md:h-60 w-80 md:ml-20'>
           <div className='mt-3 md:mt-10 px-5 md:px-7'>
             <h4 className='text-xs'>Languages, Framework and Technologies</h4>
